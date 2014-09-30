@@ -3,12 +3,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Configure the default time zone
 ////////////////////////////////////////////////////////////////////////////////
-date_default_timezone_set('MST');
+
+date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 ////////////////////////////////////////////////////////////////////////////////
 // Configure the default currency
 ////////////////////////////////////////////////////////////////////////////////
-setlocale(LC_MONETARY, 'en_US');
+setlocale(LC_MONETARY, 'vi-VN');
+
 DEFINE('BASE_URL', 'http://thaivt.com');
 DEFINE('default_controller', 'main');
 DEFINE('error_controller', 'error');
@@ -16,3 +18,4 @@ DEFINE('db_host', 'localhost');
 DEFINE('db_name', 'test');
 DEFINE('db_username', 'root');
 DEFINE('db_password', '');
+DEFINE('charset', 'utf-8');

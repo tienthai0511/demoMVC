@@ -11,7 +11,7 @@ class Test extends Controller {
 		 $example->id = 14;
 		 $example->update();
 		 #print_r($something);
-	
+	echo date_default_timezone_get();
 		 print_r(ROOT_DIR);
 		$template = $this->loadView('user/main_view');
 		 $template->set('someval', $something);
