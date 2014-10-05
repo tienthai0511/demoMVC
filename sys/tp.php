@@ -5,7 +5,7 @@ function tp()
 	global $config;
     
     // Set our defaults
-    $controller = default_controller;
+    $controller = 'test';
     $action = 'index';
     $url = '';
 	
@@ -18,25 +18,37 @@ function tp()
     
 	// Split the url into segments
 	$segments = explode('/', $url);
-	
+
 	// Do our default checks
-	if(isset($segments[0]) && $segments[0] != '') $controller = $segments[0];
-	if(isset($segments[1]) && $segments[1] != '') $action = $segments[1];
+	if (isset($segments[0]) && $segments[0] != '') $controller = $segments[0];
+	if (isset($segments[1]) && $segments[1] != '') {
+		#check link test/index/?action=123
+		$action = $segments[1];
+		# check link test/index?action=123
+		$pos = strpos($segments[1], '?');
+		if ($pos) {
+			$actionString = explode('?', $segments[1]);
+			$action = $actionString[0];
+		}
+	}
 
 	// Get our controller file
     $path = APPLICATION . 'controllers/' . $controller . '.php';
 	if(file_exists($path)){
         require_once($path);
 	} else {
-        $controller = $config['error_controller'];
+        $controller = 'error';
+		
         require_once(APPLICATION . 'controllers/' . $controller . '.php');
+		
 	}
     
     // Check the action exists
     if(!method_exists($controller, $action)){
-        $controller = $config['error_controller'];
+        $controller = 'error';
+		
         require_once(APPLICATION . 'controllers/' . $controller . '.php');
-        $action = 'index';
+		$action = 'index';
     }
 	
 	// Create object and call method

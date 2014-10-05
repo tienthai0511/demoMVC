@@ -11,13 +11,17 @@ date_default_timezone_set('MST');
 setlocale(LC_MONETARY, 'en_US');
 
 // Define location
+defined('DS') ? NULL : define('DS', DIRECTORY_SEPARATOR);
+define('ROOT_DIR', realpath(dirname(__FILE__)) . DS);
 
 defined('SITE_ROOT') ? NULL : define('SITE_ROOT', dirname(dirname(dirname(__FILE__))).DS);
-#defined('APPLICATION') ? NULL : define('APPLICATION', SITE_ROOT .'application'.DS);
+defined('APPLICATION') ? NULL : define('APPLICATION', SITE_ROOT .'application'.DS);
 defined('CONTROLLERS') ? NULL : define('CONTROLLERS', APPLICATION .'controllers'.DS);
 defined('MODELS') ? NULL : define('MODELS', APPLICATION .'models'.DS);
 defined('VIEWS') ? NULL : define('VIEWS', APPLICATION .'views'.DS);
 defined('INC') ? NULL : define('INC', APPLICATION .'inc'.DS);
+defined('HELPERS') ? NULL : define('HELPERS', APPLICATION.'helpers'.DS);
+defined('API') ? NULL : define('API', SITE_ROOT.'api'.DS);
 
 defined('SYS') ? NULL : define('SYS', SITE_ROOT .'sys'.DS);
 defined('PUBLIC_HTML') ? NULL : define('PUBLIC_HTML', SITE_ROOT .'public_html'.DS);
@@ -32,3 +36,4 @@ defined('FUNCTION_PATH') ? NULL : define('FUNCTION_PATH', INCLUDE_PATH.'function
 defined('LIB_PATH') ? NULL : define('LIB_PATH', INCLUDE_PATH.'libraries'.DS);
 defined('MODEL_PATH') ? NULL : define('MODEL_PATH', INCLUDE_PATH.'models'.DS);
 defined('VIEW_PATH') ? NULL : define('VIEW_PATH', INCLUDE_PATH.'views'.DS);
+
