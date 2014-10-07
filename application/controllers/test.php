@@ -1,10 +1,15 @@
 <?php
-
+require_once(INC . 'header_admin.php');
 class Test extends Controller {
 	
 	public function index()
 	{
-include(HELPERS . 'paginator.php');
+
+	
+	
+echo "controller_test";
+exit;
+
 	$test = new Paginator();
 
 	$test->total_records = 50;
@@ -12,7 +17,7 @@ include(HELPERS . 'paginator.php');
 	$test->specific_get = array();
 	$test->paginate();
 	$b = $test->show();
-	var_dump($b);
+	#var_dump($b);
 		/*$example = $this->loadModel('user');
 		 $something = $example->getSomething();
 		 $example->insert();
@@ -68,20 +73,20 @@ $full_url  = "$protocol://{$domain}{$disp_port}{$base_url}";
 	$pagingList = $test->show();
 	
 		$titlePage = "Trang quản trị";		
-		#$example = $this->loadModel('user');		
-		$User = $this->loadModel('useridentity');
-		$User->username = 0000;
-		$User->_id = 15;
-		$UserIdentityData = $User->getRealName();
-		$Role = $User->getRole();
-		var_dump($Role);
+		$example = $this->loadModel('user');		
+		#$User = $this->loadModel('useridentity');
+		#$User->username = 0000;
+#$User->_id = 16;
+		#$UserIdentityData = $User->getRealName();
+	#	$Role = $User->getRole();
+	#	var_dump($Role);
 		#print_r($UserIdentityData);
-		#$dataList = $example->getSomething();					
+		$dataList = $example->getSomething();					
 		# $example->title = "Trong 103 năm tại thế, Đại tướng Võ Nguyên Giáp đã trở thành điểm tựa tinh thần cho người dân Việt Nam"; #$example->content="OK";		# $example->insert();		#paging 				 $function1 = $this->loadHelper('paginator');		 $function = new Paginator();		 $function->total_records = 50; // Total records		 #$function->url_start = $full_url; // Total records		 #print_r($function->url_start);$function->class = 'pagination111'; // Specify div class$function->specific_get = array();$function->paginate(); // refresh and update all calcs and settings$b = $function->show();var_dump($b);
 				
 		$template = $this->loadView('user/list');
 		$template->set('titlePage', $titlePage);		
-		#$template->set('dataList', $dataList);		$template->set('pagingList', $pagingList);
+		$template->set('dataList', $dataList);		$template->set('pagingList', $pagingList);
 		$template->render();
 
 	}
@@ -103,10 +108,20 @@ $full_url  = "$protocol://{$domain}{$disp_port}{$base_url}";
 		exit;
 	}*/
 	public function del(){
-		echo 1;
+	
+		$example = $this->loadModel('useridentity');
+		$user = 'thaivt';
+		$pass = 'thaivt';
+		 $something = $example->checkLogin($user, $pass );
+		 $id = $something[0]->id;
+		 print_R($id);
+		 $Role = $example->getRole($id);
+		 print_R($Role);
+		 
+		#var_dump($something);
 		exit;
 	}
-	 public function delete(){
+	 public function a1212(){
 		if (!isset($_GET['id']) || !isset($_GET['act'])) {
 			echo "loại";
 		} else {
@@ -118,6 +133,9 @@ $full_url  = "$protocol://{$domain}{$disp_port}{$base_url}";
 		} else {
 			echo "ok";
 		}
+	}
+	public function edit(){
+		print_r($_GET);
 	}
 }
 

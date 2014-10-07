@@ -14,7 +14,7 @@ class Model {
 
 	public function escapeString($string)
 	{
-		return mysql_real_escape_string($string);
+		return mysql_escape_string($string);
 	}
 
 	public function escapeArray($array)

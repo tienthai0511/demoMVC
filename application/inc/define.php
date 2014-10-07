@@ -37,3 +37,8 @@ defined('LIB_PATH') ? NULL : define('LIB_PATH', INCLUDE_PATH.'libraries'.DS);
 defined('MODEL_PATH') ? NULL : define('MODEL_PATH', INCLUDE_PATH.'models'.DS);
 defined('VIEW_PATH') ? NULL : define('VIEW_PATH', INCLUDE_PATH.'views'.DS);
 
+/*DEFINE SESSION & COOKIE*/
+define(USER_ID, NULL);
+define(USER_NAME, NULL);
+define(USER_DISP, NULL);
+define(SESSION_KEY, NULL);

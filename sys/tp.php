@@ -5,10 +5,13 @@ function tp()
 	global $config;
     
     // Set our defaults
-    $controller = 'test';
-    $action = 'index';
-    $url = '';
 	
+
+
+
+	$action = 'index';
+    $url = '';
+
 	// Get request url and script url
 	$request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
 	$script_url  = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
@@ -18,9 +21,21 @@ function tp()
     
 	// Split the url into segments
 	$segments = explode('/', $url);
+	if($segments[0] == 'admin') 
+	echo "admin";
+	else echo 'normal';
+
 
 	// Do our default checks
 	if (isset($segments[0]) && $segments[0] != '') $controller = $segments[0];
+		if (!isset($_SESSION['imh']) && !$_SESSION['imh'] != "") {
+   # echo "k ton tai";
+		#header("Location: /login/index");
+		#$controller = 'login';
+	} else {
+		#header("Location: /test/index");
+		#$controller = 'test';
+	}
 	if (isset($segments[1]) && $segments[1] != '') {
 		#check link test/index/?action=123
 		$action = $segments[1];
@@ -31,7 +46,8 @@ function tp()
 			$action = $actionString[0];
 		}
 	}
-
+	print_r($controller);
+	print_r($action);
 	// Get our controller file
     $path = APPLICATION . 'controllers/' . $controller . '.php';
 	if(file_exists($path)){
@@ -50,10 +66,9 @@ function tp()
         require_once(APPLICATION . 'controllers/' . $controller . '.php');
 		$action = 'index';
     }
-	
+
 	// Create object and call method
 	$obj = new $controller;
     die(call_user_func_array(array($obj, $action), array_slice($segments, 2)));
-}
 
-?>
+}
