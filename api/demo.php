@@ -5,7 +5,7 @@ require('../application/inc/define.php');
 include('JSON.php');
 require(SYS .'controller.php');
 require(SYS .'model.php');
-require(MODELS .'user.php');
+require(MODEL_ADMIN .'Product.php');
 
 
 	$id = 13;
